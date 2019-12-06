@@ -25,4 +25,24 @@ public class ServiceClienteImpl implements IServiceCliente{
 		return dao.findById(id);
 	}
 
+	@Override
+	public Mono<Cliente> create(Cliente cliente) {
+		return dao.save(cliente);
+	}
+
+	@Override
+	public Mono<Cliente> update(Cliente cliente, String id) {
+		return dao.findById(id).flatMap(client ->{
+			client.setName(cliente.getName());
+			return dao.save(client);
+		});
+	}
+
+	@Override
+	public Mono<Void> delete(String id) {
+		return dao.findById(id).flatMap(client -> dao.delete(client));
+	}
+	
+	
+
 }

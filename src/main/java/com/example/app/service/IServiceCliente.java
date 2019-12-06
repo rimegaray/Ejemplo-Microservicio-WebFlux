@@ -11,4 +11,10 @@ public interface IServiceCliente {
 	
 	public Mono<Cliente> findById(String id);
 	
+	public Mono<Cliente> create(Cliente cliente);
+	
+	public Mono<Cliente> update(Cliente cliente, String id);
+	
+	public Mono<Void> delete(String id);
+	
 }
